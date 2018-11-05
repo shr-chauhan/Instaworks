@@ -51,15 +51,13 @@ Postgres SQL server setup in the local or in the network, allowing app server to
 #Endpoints
 1. http://127.0.0.1:5000/api/v2.0/team_members
     - GET: list of team members
-        -curl: 
-            ```
-            curl -X GET http://127.0.0.1:5000/api/v2.0/team_members
-            ```
+        ```
+        curl -X GET http://127.0.0.1:5000/api/v2.0/team_members
+        ```
     - POST: Add a new team member, needs to give all properties of a member
-        -example json:
-            ```
-                curl -X POST -H "Content-Type:application/json" http://127.0.0.1:5000/api/v2.0/team_members -d '{"email": "sh.chauhan@gma.commm", "first_name": "Shrey", "last_name": "Chauhan", "phone_number": 332987, "role": "regular"}'
-            ```
+        ```
+            curl -X POST -H "Content-Type:application/json" http://127.0.0.1:5000/api/v2.0/team_members -d '{"email": "sh.chauhan@gma.commm", "first_name": "Shrey", "last_name": "Chauhan", "phone_number": 332987, "role": "regular"}'
+        ```
 2. http://127.0.0.1:5000/api/v2.0/team_member/{id}
     - GET: Details of a team member
         ```

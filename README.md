@@ -56,7 +56,7 @@ Postgres SQL server setup in the local or in the network, allowing app server to
         ```
     - POST: Add a new team member, needs to give all properties of a member
         ```
-            curl -X POST -H "Content-Type:application/json" http://127.0.0.1:5000/api/v2.0/team_members -d '{"email": "sh.chauhan@gma.commm", "first_name": "Shrey", "last_name": "Chauhan", "phone_number": 332987, "role": "regular"}'
+        curl -X POST -H "Content-Type:application/json" http://127.0.0.1:5000/api/v2.0/team_members -d '{"email": "sh.chauhan@gma.commm", "first_name": "Shrey", "last_name": "Chauhan", "phone_number": 332987, "role": "regular"}'
         ```
 2. http://127.0.0.1:5000/api/v2.0/team_member/{id}
     - GET: Details of a team member
@@ -68,7 +68,6 @@ Postgres SQL server setup in the local or in the network, allowing app server to
         curl -X DELETE http://127.0.0.1:5000/api/v2.0/team_member/{id}
         ```
     - PATCH: Edit the properties of a team member
-        example json:
-            ```
-                curl -X PATCH -H "Content-Type:application/json" http://127.0.0.1:5000/api/v2.0/team_member/5 -d '{"role": "admin"}'
-            ```
+        ```
+        curl -X PATCH -H "Content-Type:application/json" http://127.0.0.1:5000/api/v2.0/team_member/5 -d '{"role": "admin"}'
+        ```

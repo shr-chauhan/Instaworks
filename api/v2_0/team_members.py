@@ -21,10 +21,10 @@ class TeamMembersAPI(APIBase):
     def post(self):
         '''create new group, by providing the group name'''
         request_data=self.get_parsed_request_data()
-        # try:
-        team_member=team_model.TeamMember.create_member(first_name=request_data['first_name'], last_name=request_data['last_name'], phone_number=request_data['phone_number'], email=request_data['email'], role=request_data['role'])
-        # except:
-        #     raise exceptions.BadRequest('invalid request, email_id or phone number already exists')
+        try:
+            team_member=team_model.TeamMember.create_member(first_name=request_data['first_name'], last_name=request_data['last_name'], phone_number=request_data['phone_number'], email=request_data['email'], role=request_data['role'])
+        except:
+            raise exceptions.BadRequest('invalid request, email_id or phone number already exists')
         return jsonify(self.select_fields(team_member))
 
 

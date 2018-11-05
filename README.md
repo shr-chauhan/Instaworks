@@ -33,9 +33,12 @@ Postgres SQL server setup in the local or in the network, allowing app server to
     install.sh supports only redhat based linux dist(centos/fedora) and not ubuntu, as the project uses YUM to install pip and virtualenv.
 
 #Run
-1. Need to fill the write details in config/system.yaml, like database_ip, database_name. In case of passwords it should be mentioned in config/passwords.yaml.
-But in case of production there should not be any password file and all passwords should be taken from systems env variables.
-1. Manage.py runs the app in the dev mode for production it will need webserver(apache/nginx).
+1. Need to fill the write details in config/system.yaml, like database_ip, database_name. In case of passwords it should be mentioned in config/passwords.yaml. But in ase of production there should not be any password file and all passwords should be taken from systems env variables.
+2. Run manage.py deploy, as the project uses alembic for migrations, deploy will run upgrade() and will create tables. No need to run init as version file is already placed. manage.py deploy is enough
+    ```
+    python manage.py deploy
+    ```
+3. Manage.py runs the app in the dev mode, for production it will need a web-server(apache/nginx).
     ```
     python manage.py runserver
     ```
@@ -47,26 +50,26 @@ But in case of production there should not be any password file and all password
 
 #Endpoints
 1. http://127.0.0.1:5000/api/v2.0/team_members
-    -GET: list of team members
+    - GET: list of team members
         -curl: 
             ```
             curl -X GET http://127.0.0.1:5000/api/v2.0/team_members
             ```
-    -POST: Add a new team member, needs to give all properties of a member
+    - POST: Add a new team member, needs to give all properties of a member
         -example json:
             ```
                 curl -X POST -H "Content-Type:application/json" http://127.0.0.1:5000/api/v2.0/team_members -d '{"email": "sh.chauhan@gma.commm", "first_name": "Shrey", "last_name": "Chauhan", "phone_number": 332987, "role": "regular"}'
             ```
 2. http://127.0.0.1:5000/api/v2.0/team_member/{id}
-    -GET: Details of a team member
+    - GET: Details of a team member
         ```
         curl -X GET http://127.0.0.1:5000/api/v2.0/team_member/{id}
         ```
-    -DELETE: Remove the team member from the list of team members
+    - DELETE: Remove the team member from the list of team members
         ```
         curl -X DELETE http://127.0.0.1:5000/api/v2.0/team_member/{id}
         ```
-    -PATCH: Edit the properties of a team member
+    - PATCH: Edit the properties of a team member
         example json:
             ```
                 curl -X PATCH -H "Content-Type:application/json" http://127.0.0.1:5000/api/v2.0/team_member/5 -d '{"role": "admin"}'

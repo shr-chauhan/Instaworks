@@ -1,7 +1,6 @@
 from .team_members import TeamMembersAPI, SingleTeamMembersAPI
 from . import api_bp
 from api import APIBase
-from app import rate_limiter
 from flask import jsonify
 from schemas import ma
 api_mappers = [TeamMembersAPI, SingleTeamMembersAPI]

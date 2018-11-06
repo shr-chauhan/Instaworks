@@ -1,8 +1,8 @@
-"""big integer
+"""pinned dependencies
 
-Revision ID: c3046425f772
+Revision ID: 572183965ec0
 Revises: 
-Create Date: 2018-11-05 03:57:13.271484
+Create Date: 2018-11-06 16:35:30.038889
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c3046425f772'
+revision = '572183965ec0'
 down_revision = None
 branch_labels = None
 depends_on = None

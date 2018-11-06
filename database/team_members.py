@@ -41,7 +41,6 @@ class TeamMember(BaseMixin, db.Model):
         if phone_number is not None: self.phone_number=phone_number
         if email is not None: self.email=email
         if role is not None: self.role=role
-        applogger.debug("Gettinggg dataaaa")
         db.session.add(self)
         db.session.commit()
         

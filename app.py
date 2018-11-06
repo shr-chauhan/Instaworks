@@ -1,7 +1,5 @@
 from flask import Flask, request, g, jsonify, abort
 # from flask_rbac import RBAC
-from flask_limiter import Limiter
-from flask_limiter.util import get_ipaddr
 
 from database import db
 from schemas import ma
@@ -12,7 +10,6 @@ from common import logging
 from common.exceptions import Forbidden, Unauthorized,\
                               raise_exception, register_error_handlers
 
-rate_limiter = Limiter(key_func=get_ipaddr)
 
 # def rbac_permission_check_failed():
 #     if g.current_user.username == 'anonymous_user':
@@ -41,7 +38,7 @@ def create_app():
     return app
 
 def init_app_plugins(app):
-    rate_limiter.init_app(app)
+    # rate_limiter.init_app(app)
     # rbac.init_app(app)
     db.init_app(app)
     ma.init_app(app)

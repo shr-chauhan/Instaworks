@@ -1,0 +1,47 @@
+#app settings
+log_folder: &logf
+    /var/log/instawork_shrey
+app_name:   &appn
+    instawork_team_member
+
+
+development_config: &development_config
+    log_folder: *logf
+    app_name:   *appn
+    #database configuration
+    database_type:  sqlite
+    database_name:  development
+
+    debug:          True
+    
+    #flask configuration
+    flask_configuration:
+        PROPAGATE_EXCEPTIONS:           False
+        BUNDLE_ERRORS:                  True
+        SQLALCHEMY_TRACK_MODIFICATIONS: False
+        SQLALCHEMY_BINDS: {
+            'team_db'   : "%{'{dialect}:///{lf}/{an}_{dn}_team_db.sqlite'.format(dialect=system['database_type'], lf=system['log_folder'], an=system['app_name'], dn=system['database_name'])}",
+        }
+
+
+production_config:
+    log_folder: *logf
+    app_name:   *appn
+    #database configuration
+    database_type:  postgresql+psycopg2
+    database_ip:    localhost
+    database_user:  shrey
+    database_name:  instaworks
+  
+    debug:          False
+   
+    #flask options
+    flask_configuration:
+        PROPAGATE_EXCEPTIONS:           False
+        BUNDLE_ERRORS:                  True
+        SQLALCHEMY_TRACK_MODIFICATIONS: False
+        SQLALCHEMY_BINDS: {
+            'team_db'   : "%{'{dialect}://{du}:{dp}@{dip}/{dn}_team_db'.format(dialect=system['database_type'], du=system['database_user'], dp=passwords['database_pass'], dip=system['database_ip'], dn=system['database_name'])}",
+        }
+
+default_config: *development_config
